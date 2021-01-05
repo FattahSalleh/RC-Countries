@@ -5,11 +5,12 @@
       <div id="title">
         Where in the world?
       </div>
-      <div id="mode">
+      <div id="mode" href="#">
         <div id="moon-icon">
-          <img src="./assets/icomoon/PNG/moon-stroke.png" alt="White Moon">
+          <i class="far fa-moon"></i>
         </div>
-        <a id="mode-word" href="#">Dark Mode</a>
+        <div id="mode-word"></div>
+          Dark Mode
       </div>
     </div>
 
@@ -30,7 +31,7 @@ export default {
   name: 'App',
   data () {
     return {
-      api_key: 'https://restcountries.eu/rest/v2/all'
+      url_base: 'https://restcountries.eu/rest/v2/all'
     }
   }
 
@@ -74,7 +75,7 @@ export default {
 
   .search-box .search-bar {
     width: 80%;
-    padding: 15px;
+    padding: 17px;
     color: hsl(0, 0%, 100%);
     font-size: 14px;
     appearance: none;
@@ -133,7 +134,7 @@ export default {
   .top-bar #mode {
     color: hsl(0, 0%, 100%);
     float: right;
-    font-weight: 800;
+    font-weight: 600;
     font-size: 14px;
     width: 8%;
     text-align: right;
@@ -141,25 +142,17 @@ export default {
   }
 
   #moon-icon {
-    padding: 0px 5px;
-  }
-
-  #moon-icon img {
+    padding: 0px;
+    color: white;
     width: 16px;
     height: auto;
     float: left;
     overflow: hidden;
   }
 
-  a {
-    color: hsl(0, 0%, 100%);
-    text-decoration: inherit;
-  }
 
-  a:hover {
-    font-weight: 800;
-    color: hsl(0, 0%, 100%);
-    transition: 0.4s;
+  #mode-word {
+    float: right;
   }
 
 </style>
