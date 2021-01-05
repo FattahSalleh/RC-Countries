@@ -5,12 +5,11 @@
       <div id="title">
         Where in the world?
       </div>
-      <div id="mode" href="#">
+      <div id="mode">
         <div id="moon-icon">
           <img src="./assets/icomoon/PNG/moon-stroke.png" alt="White Moon">
         </div>
-        <div id="mode-word"></div>
-          Dark Mode
+        <a id="mode-word" href="#">Dark Mode</a>
       </div>
     </div>
 
@@ -134,7 +133,7 @@ export default {
   .top-bar #mode {
     color: hsl(0, 0%, 100%);
     float: right;
-    font-weight: 600;
+    font-weight: 800;
     font-size: 14px;
     width: 8%;
     text-align: right;
@@ -152,8 +151,15 @@ export default {
     overflow: hidden;
   }
 
-  #mode-word {
-    float: right;
+  a {
+    color: hsl(0, 0%, 100%);
+    text-decoration: inherit;
+  }
+
+  a:hover {
+    font-weight: 800;
+    color: hsl(0, 0%, 100%);
+    transition: 0.4s;
   }
 
 </style>
