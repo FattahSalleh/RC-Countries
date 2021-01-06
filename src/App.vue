@@ -1,22 +1,10 @@
 <template>
   <div id="app">
-
-    <div class="top-bar">
-      <div id="title">
-        Where in the world?
-      </div>
-      <div id="mode" href="#">
-        <div id="moon-icon">
-          <i class="far fa-moon"></i>
-        </div>
-        <div id="mode-word"></div>
-          Dark Mode
-      </div>
-    </div>
-
+  
     <main>
       <div class="search-box">
-        <input type="text" class="search-bar" placeholder="Search for a country..." />
+        <!-- <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" @input="fetchCountry" /> -->
+        <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" @keypress="fetchCountry" />
         <button type="submit"><i class="fas fa-search"></i></button> 
       </div>
 
@@ -35,16 +23,20 @@
       </div>
 
     </main>
+
+   <ul>
+      <li v-for="c in country" :key="c.name" style="color:white;">{{ c.name }}</li>
+    </ul>
     
     <div class="main-content">
-      <div class="home-country-box">
+      <div class="home-country-box" v-if="typeof country != 'undefined'">
         <div class="home-country-flag">
           <i>Afghanistan Flag</i>
         </div>
 
         <div class="home-country-details">
           <div class="home-country-name" style="font-weight:800; font-size: 16px; margin: 0 0 10px 0;">
-          Afghanistan
+          {{ country.name }}
         </div>
 
         <div class="home-country-title">Population:</div>
@@ -75,13 +67,29 @@
 <script>
 
 export default {
-  name: 'App',
+  name: 'app',
   data () {
     return {
-      url_base: 'https://restcountries.eu/rest/v2/all'
+      url_base: 'https://restcountries.eu/rest/v2',
+      query: '',
+      country: {}
+    }
+  },
+  methods:{
+    fetchCountry(e){
+      // if(e.key != ""){
+      // fetch('${this.url_base}name/${this.query}')
+      if(e.key == "Enter"){
+      fetch('https://restcountries.eu/rest/v2/')
+        .then(res => {
+          return res.json();
+        }).then(this.setResults);
+      }
+    },
+    setResults(results){
+      this.country = results;
     }
   }
-
 }
 </script>
 
@@ -248,48 +256,6 @@ export default {
 
   .drop-box:hover .dropbox-content {
     display: block;
-  }
-
-  .top-bar{
-    padding: 15px 50px;
-    border: hidden;
-    background-color: hsl(209, 23%, 22%);
-    margin: auto;
-    overflow: hidden;
-    transition: 0.4;
-  }
-
-  .top-bar #title {
-    color: hsl(0, 0%, 100%);
-    width: 13%;
-    float: left;
-    font-weight: 800;
-    font-size: 16px;
-    padding: 5px;
-  }
-
-  .top-bar #mode {
-    color: hsl(0, 0%, 100%);
-    float: right;
-    font-weight: 600;
-    font-size: 14px;
-    width: 8%;
-    text-align: right;
-    padding: 5px;
-  }
-
-  #moon-icon {
-    padding: 0px;
-    color: white;
-    width: 16px;
-    height: auto;
-    float: left;
-    overflow: hidden;
-  }
-
-
-  #mode-word {
-    float: right;
   }
 
 </style>

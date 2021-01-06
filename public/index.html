@@ -12,14 +12,75 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <title>Where in the world?</title>
+
+    <style>
+      .top-bar{
+      padding: 15px 50px;
+      border: hidden;
+      background-color: hsl(209, 23%, 22%);
+      margin: auto;
+      overflow: hidden;
+      transition: 0.4;
+      }
+
+    .top-bar #title {
+      color: hsl(0, 0%, 100%);
+      width: 13%;
+      float: left;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 5px;
+      }
+
+    .top-bar #mode {
+      color: hsl(0, 0%, 100%);
+      float: right;
+      font-weight: 600;
+      font-size: 14px;
+      width: 8%;
+      text-align: right;
+      padding: 5px;
+      }
+
+    #moon-icon {
+      padding: 0px;
+      color: white;
+      width: 16px;
+      height: auto;
+      float: left;
+      overflow: hidden;
+     }
+
+    #mode {
+      text-decoration: none;
+    }
+
+    #mode-word {
+      float: right;
+    }
+
+  </style>
+
   </head>
   <body>
+
+    <div class="top-bar">
+      <div id="title">
+        Where in the world?
+      </div>
+      <a id="mode" href="#">
+        <div id="moon-icon">
+          <i class="far fa-moon"></i>
+        </div>
+        <div id="mode-word"></div>
+          Dark Mode
+      </a>
+    </div>
+
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script src="app.js"></script>
-
   </body>
 </html>
