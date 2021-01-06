@@ -19,6 +19,20 @@
         <input type="text" class="search-bar" placeholder="Search for a country..." />
         <button type="submit"><i class="fas fa-search"></i></button> 
       </div>
+
+      <div class="drop-box">
+        <div id="down-icon">
+          <i class="fas fa-caret-down"></i>
+        </div>
+        <button class="drop-button">Filter by Region</button>
+        <div class="dropbox-content">
+          <a href="#">Africa</a>
+          <a href="#">America</a>
+          <a href="#">Asia</a>
+          <a href="#">Europe</a>
+          <a href="#">Ocenia</a>
+        </div>
+      </div>
       
     </main>
 
@@ -71,6 +85,7 @@ export default {
   .search-box {
     width: 30%;
     margin-bottom: 30px;
+    float: left;
   }
 
   .search-box .search-bar {
@@ -105,13 +120,69 @@ export default {
   border: none;
   cursor: pointer;
   border-radius: 5px 0px 0px 5px;
-}
+  }
 
-.search-box:after {
-  content: "";
-  clear: both;
-  display: table;
-}
+  .search-box:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .drop-box{
+  float: right;
+  width: 15%;
+  }
+
+  #down-icon i{
+    color: white;
+    width: 20%;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 5px;
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+    float: right;
+    padding: 17.5px;
+    margin-left: 0;
+    border-radius: 0px 5px 5px 0;
+  }
+
+  .drop-button{
+    background-color: hsl(209, 23%, 22%);
+    color: hsl(0, 0%, 100%);
+    padding: 15px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+    margin-bottom: 5px;
+    width: 80%;
+    text-align: left;
+    float: left;
+  }
+
+  .dropbox-content{
+    display: none;
+    background-color: hsl(209, 23%, 22%);
+    min-width: 160px;
+    z-index: 1;
+  }
+
+  .dropbox-content a{
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(209, 23%, 22%);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropbox-content a:hover{
+    background-color: hsl(209, 23%, 25%);
+  }
+
+  .drop-box:hover .dropbox-content {
+    display: block;
+  }
 
   .top-bar{
     padding: 15px 50px;
