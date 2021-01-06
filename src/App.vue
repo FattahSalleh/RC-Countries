@@ -33,8 +33,41 @@
           <a href="#">Ocenia</a>
         </div>
       </div>
-      
+
     </main>
+    
+    <div class="main-content">
+      <div class="home-country-box">
+        <div class="home-country-flag">
+          <i>Afghanistan Flag</i>
+        </div>
+
+        <div class="home-country-details">
+          <div class="home-country-name" style="font-weight:800; font-size: 16px; margin: 0 0 10px 0;">
+          Afghanistan
+        </div>
+
+        <div class="home-country-title">Population:</div>
+          <div class="home-country-population">
+            10,000,000  
+            <br/>
+          </div>
+
+        <div class="home-country-title">Region:</div>
+          <div class="home-country-region">
+            Asia  
+            <br/>
+          </div>
+
+        <div class="home-country-title">Capital:</div>
+          <div class="home-country-capital">
+            Kabul 
+            <br/>
+          </div>
+        </div>
+        
+      </div>
+    </div>
 
   </div>
 </template>
@@ -75,11 +108,44 @@ export default {
   }
 
   main {
-    min-height: 100vh;
+    min-height: 15vh;
     max-width: 1440px;
     padding: 30px 50px;
     overflow-wrap: break-word;
     transition: 0.4s;
+  }
+
+  .main-content {
+    min-height: 95vh;
+    max-width: 1440px;
+    padding: 30px 50px;
+    overflow-wrap: break-word;
+    transition: 0.4s;
+    
+    color: hsl(0, 0%, 100%);
+    font-size: 14px;
+  }
+
+  .home-country-box {
+    max-width: 240px;
+    height: auto;
+    background-color: hsl(209, 23%, 22%);
+  }
+
+  .home-country-flag {
+    padding: 0;
+  }
+
+  .home-country-details {
+    padding: 15px;
+  }
+
+  .home-country-title, .home-country-population, .home-country-region, .home-country-capital {
+    display: inline;
+  }
+
+  .home-country-title{
+    font-weight:600; 
   }
 
   .search-box {
