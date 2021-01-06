@@ -3,8 +3,8 @@
   
     <main>
       <div class="search-box">
-        <!-- <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" @input="fetchCountry" /> -->
-        <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" @keypress="fetchCountry" />
+        <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" @input="fetchCountry" /> 
+        <!-- <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" @keypress="fetchCountry" /> -->
         <button type="submit"><i class="fas fa-search"></i></button> 
       </div>
 
@@ -76,15 +76,13 @@ export default {
     }
   },
   methods:{
-    fetchCountry(e){
-      // if(e.key != ""){
+    fetchCountry(){
       // fetch('${this.url_base}name/${this.query}')
-      if(e.key == "Enter"){
-      fetch('https://restcountries.eu/rest/v2/')
+      // fetch('https://restcountries.eu/rest/v2/name/afg')  <--- This format. 'afg' is query.
+      fetch('https://restcountries.eu/rest/v2/') // <--- This format is to print all country names. '..v2/name' is ERROR!
         .then(res => {
           return res.json();
         }).then(this.setResults);
-      }
     },
     setResults(results){
       this.country = results;
