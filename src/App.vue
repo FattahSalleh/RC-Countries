@@ -25,7 +25,7 @@
         
     <div class="main-content">
       <!--<div class="home-country-box" v-if="typeof country != 'undefined'">-->
-      <div class="home-country-box" v-for="c in country" :key="c.countrydetail">
+      <div class="home-country-box" v-for="c in filteredCountry" :key="c.countrydetail">
         <div class="home-country-flag">
          <img v-bind:src="c.flag" />
         </div>
@@ -73,24 +73,24 @@ export default {
   },
   methods:{
 
-    fetchCountry(){
-      //fetch('${this.url_base}name/?q=${this.query}')
-      //fetch('${this.url_base}') // Error
-      //fetch('https://restcountries.eu/rest/v2/name/${this.query}')
-      //fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format 'afg' is query.
-      fetch('https://restcountries.eu/rest/v2/') // <--- This format is to print all country into array. '..v2/name' is ERROR!
-      //fetch('https://restcountries.eu/rest/v2/$(this.query}')
-        .then(res => {
-          return res.json();
-        }).then(this.setResults);
-    },
-    setResults(results){
-      this.country = results;
-     console.log(results);
-    }
+    // fetchCountry(){
+    //   //fetch('${this.url_base}name/?q=${this.query}')
+    //   //fetch('${this.url_base}') // Error
+    //   //fetch('https://restcountries.eu/rest/v2/name/${this.query}')
+    //   //fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format 'afg' is query.
+    //   fetch('https://restcountries.eu/rest/v2/') // <--- This format is to print all country into array. '..v2/name' is ERROR!
+    //   //fetch('https://restcountries.eu/rest/v2/$(this.query}')
+    //     .then(res => {
+    //       return res.json();
+    //     }).then(this.setResults);
+    // },
+    // setResults(results){
+    //   this.country = results;
+    //  console.log(results);
+    // }
   
-    },
-  //Lifecycle Hooks
+    // },
+  //Lifecycle Hooks - To show all countries when loaded
   mounted(){
     fetch('https://restcountries.eu/rest/v2/')
       .then(res => {
@@ -101,6 +101,13 @@ export default {
       console.log(results);
     }
   },
+  computed:{
+    filteredCountry: function(){
+      return this.country.filter((c) => {
+        return c.title.match(this.query);
+      });
+    }
+  }
   }
 
 
