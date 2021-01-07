@@ -3,8 +3,7 @@
   
     <main>
       <div class="search-box">
-        <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" @input="fetchCountry" /> 
-        <!-- <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" @keypress="fetchCountry" /> -->
+        <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" v-on:input="fetchCountry" /> 
         <button type="submit"><i class="fas fa-search"></i></button> 
       </div>
 
@@ -23,17 +22,11 @@
       </div>
 
     </main>
-
-  <!-- <ul>
-      <li v-for="c in country" :key="c.name" style="color:white;">{{ c.name }}</li>
-    </ul> -->
-
-    
+        
     <div class="main-content">
       <!--<div class="home-country-box" v-if="typeof country != 'undefined'">-->
       <div class="home-country-box" v-for="c in country" :key="c.countrydetail">
         <div class="home-country-flag">
-         <!-- <div>{{ c.flag }}</div> 'c.flag' selepas fetch from api => https://restcountries.eu/data/afg.svg -->
          <img v-bind:src="c.flag" />
         </div>
 
@@ -41,16 +34,6 @@
           <div class="home-country-name" style="font-weight:800; font-size: 14px; margin: 0 0 10px 0;">
           {{ c.name }}
           </div>
-
-        <!--<div class="home-country-details">
-          <div class="home-country-name" style="font-weight:800; font-size: 14px; margin: 0 0 10px 0;" v-for="c in country" :key="c">
-          {{ c }}
-          </div> -->
-
-          <!--<div class="home-country-details">
-          <div class="home-country-name" style="font-weight:800; font-size: 14px; margin: 0 0 10px 0;">
-          {{ c.name }}
-          </div>-->
 
         <div class="home-country-title">Population:</div>
           <div class="home-country-population">
@@ -89,11 +72,14 @@ export default {
     }
   },
   methods:{
+
     fetchCountry(){
       //fetch('${this.url_base}name/?q=${this.query}')
+      //fetch('${this.url_base}') // Error
       //fetch('https://restcountries.eu/rest/v2/name/${this.query}')
-      fetch('https://restcountries.eu/rest/v2/') // <--- This format is to print all country into array. '..v2/name' is ERROR!
       //fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format 'afg' is query.
+      fetch('https://restcountries.eu/rest/v2/') // <--- This format is to print all country into array. '..v2/name' is ERROR!
+      //fetch('https://restcountries.eu/rest/v2/$(this.query}')
         .then(res => {
           return res.json();
         }).then(this.setResults);
@@ -101,12 +87,23 @@ export default {
     setResults(results){
       this.country = results;
      console.log(results);
-    },
-    fetchCountryName(){
-
     }
+  
+    },
+  //Lifecycle Hooks
+  mounted(){
+    fetch('https://restcountries.eu/rest/v2/')
+      .then(res => {
+        return res.json();
+      }).then(this.setResults);
+    setResults(results);{
+      this.country=results;
+      console.log(results);
+    }
+  },
   }
-}
+
+
 </script>
 
 <style>
