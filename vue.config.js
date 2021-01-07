@@ -1,6 +1,3 @@
 module.exports = {
-    devServer: {
-
-        host: 'http://localhost:8080'
-    }
-};
+    publicPath: '/RC-Countries/'
+}
