@@ -1,6 +1,6 @@
 module.exports = {
     devServer: {
 
-        host: 'localhost'
+        host: 'http://localhost:8080'
     }
 };
