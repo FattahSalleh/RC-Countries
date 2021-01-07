@@ -24,36 +24,49 @@
 
     </main>
 
-   <ul>
+  <!-- <ul>
       <li v-for="c in country" :key="c.name" style="color:white;">{{ c.name }}</li>
-    </ul>
+    </ul> -->
+
     
     <div class="main-content">
-      <div class="home-country-box" v-if="typeof country != 'undefined'">
+      <!--<div class="home-country-box" v-if="typeof country != 'undefined'">-->
+      <div class="home-country-box" v-for="c in country" :key="c.countrydetail">
         <div class="home-country-flag">
-          <i>Afghanistan Flag</i>
+         <!-- <div>{{ c.flag }}</div> 'c.flag' selepas fetch from api => https://restcountries.eu/data/afg.svg -->
+         <img v-bind:src="c.flag" />
         </div>
 
         <div class="home-country-details">
           <div class="home-country-name" style="font-weight:800; font-size: 16px; margin: 0 0 10px 0;">
-          {{ country.name }}
-        </div>
+          {{ c.name }}
+          </div>
+
+        <!--<div class="home-country-details">
+          <div class="home-country-name" style="font-weight:800; font-size: 16px; margin: 0 0 10px 0;" v-for="c in country" :key="c">
+          {{ c }}
+          </div> -->
+
+          <!--<div class="home-country-details">
+          <div class="home-country-name" style="font-weight:800; font-size: 16px; margin: 0 0 10px 0;">
+          {{ c.name }}
+          </div>-->
 
         <div class="home-country-title">Population:</div>
           <div class="home-country-population">
-            10,000,000  
+            {{ c.population }}
             <br/>
           </div>
 
         <div class="home-country-title">Region:</div>
           <div class="home-country-region">
-            Asia  
+              {{ c.region }}  
             <br/>
           </div>
 
         <div class="home-country-title">Capital:</div>
           <div class="home-country-capital">
-            Kabul 
+            {{ c.capital }}
             <br/>
           </div>
         </div>
@@ -70,23 +83,26 @@ export default {
   name: 'app',
   data () {
     return {
-      url_base: 'https://restcountries.eu/rest/v2',
+      url_base: 'https://restcountries.eu/rest/v2/',
       query: '',
       country: {}
     }
   },
   methods:{
     fetchCountry(){
-      // fetch('${this.url_base}name/${this.query}')
-      // fetch('https://restcountries.eu/rest/v2/name/afg')  <--- This format. 'afg' is query.
-      fetch('https://restcountries.eu/rest/v2/') // <--- This format is to print all country names. '..v2/name' is ERROR!
+      //fetch('${this.url_base}name/?q=${this.query}')
+      //fetch('https://restcountries.eu/rest/v2/name/${this.query}')
+      fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format. 'afg' is query.
+      //fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format is to print all country names. '..v2/name' is ERROR!
         .then(res => {
           return res.json();
         }).then(this.setResults);
     },
     setResults(results){
       this.country = results;
+     console.log(results);
     }
+    ,
   }
 }
 </script>
@@ -142,8 +158,13 @@ export default {
     padding: 0;
   }
 
+  .home-country-flag img {
+    width: 240px;
+    height: auto;
+  }
+
   .home-country-details {
-    padding: 15px;
+    padding: 15px 15px 25px 15px;
   }
 
   .home-country-title, .home-country-population, .home-country-region, .home-country-capital {
