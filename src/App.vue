@@ -3,7 +3,7 @@
   
     <main>
       <div class="search-box">
-        <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" v-on:input="fetchCountry" /> 
+        <input type="text" class="search-bar" placeholder="Search for a country..." v-model="query" /> 
         <button type="submit"><i class="fas fa-search"></i></button> 
       </div>
 
@@ -96,10 +96,6 @@ export default {
       .then(res => {
         return res.json();
       }).then(this.setResults);
-    setResults(results);{
-      this.country=results;
-      console.log(results);
-    }
   },
   }
 
