@@ -38,23 +38,23 @@
         </div>
 
         <div class="home-country-details">
-          <div class="home-country-name" style="font-weight:800; font-size: 16px; margin: 0 0 10px 0;">
+          <div class="home-country-name" style="font-weight:800; font-size: 14px; margin: 0 0 10px 0;">
           {{ c.name }}
           </div>
 
         <!--<div class="home-country-details">
-          <div class="home-country-name" style="font-weight:800; font-size: 16px; margin: 0 0 10px 0;" v-for="c in country" :key="c">
+          <div class="home-country-name" style="font-weight:800; font-size: 14px; margin: 0 0 10px 0;" v-for="c in country" :key="c">
           {{ c }}
           </div> -->
 
           <!--<div class="home-country-details">
-          <div class="home-country-name" style="font-weight:800; font-size: 16px; margin: 0 0 10px 0;">
+          <div class="home-country-name" style="font-weight:800; font-size: 14px; margin: 0 0 10px 0;">
           {{ c.name }}
           </div>-->
 
         <div class="home-country-title">Population:</div>
           <div class="home-country-population">
-            {{ c.population }}
+            {{ Number(c.population).toLocaleString() }}
             <br/>
           </div>
 
@@ -92,8 +92,8 @@ export default {
     fetchCountry(){
       //fetch('${this.url_base}name/?q=${this.query}')
       //fetch('https://restcountries.eu/rest/v2/name/${this.query}')
-      fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format. 'afg' is query.
-      //fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format is to print all country names. '..v2/name' is ERROR!
+      fetch('https://restcountries.eu/rest/v2/') // <--- This format is to print all country into array. '..v2/name' is ERROR!
+      //fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format 'afg' is query.
         .then(res => {
           return res.json();
         }).then(this.setResults);
@@ -101,8 +101,10 @@ export default {
     setResults(results){
       this.country = results;
      console.log(results);
+    },
+    fetchCountryName(){
+
     }
-    ,
   }
 }
 </script>
@@ -149,8 +151,10 @@ export default {
   }
 
   .home-country-box {
+    display: inline-block;
     max-width: 240px;
     height: auto;
+    margin: 30px 47px;
     background-color: hsl(209, 23%, 22%);
   }
 
@@ -160,11 +164,11 @@ export default {
 
   .home-country-flag img {
     width: 240px;
-    height: auto;
+    height: 160px;
   }
 
   .home-country-details {
-    padding: 15px 15px 25px 15px;
+    padding: 15px 15px 35px 15px;
   }
 
   .home-country-title, .home-country-population, .home-country-region, .home-country-capital {
@@ -205,14 +209,14 @@ export default {
   }
 
   .search-box button {
-  float: left;
-  width: 20%;
-  padding: 15px;
-  background-color: hsl(209, 23%, 22%);
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px 0px 0px 5px;
+    float: left;
+    width: 20%;
+    padding: 15px;
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px 0px 0px 5px;
   }
 
   .search-box:after {
@@ -254,14 +258,14 @@ export default {
     float: left;
   }
 
-  .dropbox-content{
+  .dropbox-content {
     display: none;
     background-color: hsl(209, 23%, 22%);
     min-width: 160px;
     z-index: 1;
   }
 
-  .dropbox-content a{
+  .dropbox-content a {
     color: hsl(0, 0%, 100%);
     background-color: hsl(209, 23%, 22%);
     padding: 12px 16px;
@@ -269,12 +273,14 @@ export default {
     display: block;
   }
 
-  .dropbox-content a:hover{
+  .dropbox-content a:hover {
     background-color: hsl(209, 23%, 25%);
   }
 
   .drop-box:hover .dropbox-content {
+    margin: 50px 0 0 0;
     display: block;
+    position: absolute;
   }
 
 </style>
