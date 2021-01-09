@@ -1,5 +1,7 @@
 // vue.config.js
 module.exports = {
-    publicPath: '/RC-Countries/',
+    publicPath: process.env.NODE_ENV === 'production' ?
+        '/RC-Countries/' :
+        '/',
     lintOnSave: false
 }
