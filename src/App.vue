@@ -58,12 +58,19 @@
     </div>
 
   </div>
+  
 </template>
+
+
+<!-- ===================================== JS ===================================== -->
 
 <script>
 
+import Detail from './components/Detail.vue'
+
 export default {
   name: 'app',
+  components: { Detail },
   data () {
     return {
       url_base: 'https://restcountries.eu/rest/v2/',
@@ -75,11 +82,11 @@ export default {
 
     fetchCountry(){
       //fetch('${this.url_base}name/?q=${this.query}')
-      //fetch('${this.url_base}') // Error
       //fetch('https://restcountries.eu/rest/v2/name/${this.query}')
+      //fetch('https://restcountries.eu/rest/v2/$(this.query}')
       //fetch('https://restcountries.eu/rest/v2/name/afg') // <--- This format 'afg' is query.
       fetch('https://restcountries.eu/rest/v2/') // <--- This format is to print all country into array. '..v2/name' is ERROR!
-      //fetch('https://restcountries.eu/rest/v2/$(this.query}')
+      //fetch('${this.url_base}') 
         .then(res => {
           return res.json();
         }).then(this.setResults);
@@ -97,11 +104,17 @@ export default {
         return res.json();
       }).then(this.setResults);
   },
+  setResults(results){
+      this.country = results;
+     console.log(results);
+    }
   }
+
 
 
 </script>
 
+<!-- ===================================== CSS ===================================== -->
 <style>
 
   @font-face {
