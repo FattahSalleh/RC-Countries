@@ -1,9 +1,11 @@
 <template>
 
     <div class="top-bar">
-      <div id="title">
-        Where in the world?
-      </div>
+      <router-link to="/">
+        <div id="title">
+          Where in the world?
+        </div>
+      </router-link>
       <a id="mode" href="#">
         <div id="moon-icon">
           <i class="far fa-moon"></i>
@@ -11,6 +13,9 @@
         <div id="mode-word"></div>
           Dark Mode
       </a>
+
+  <router-view/>
+
     </div>
 
 </template>
