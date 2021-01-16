@@ -14,8 +14,6 @@
           Dark Mode
       </a>
 
-  <router-view/>
-
     </div>
 
 </template>
