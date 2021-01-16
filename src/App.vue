@@ -1,4 +1,5 @@
 <template>
+  
   <div id="app">
   
     <main>
@@ -58,6 +59,7 @@
     </div>
 
   </div>
+
   
 </template>
 
@@ -66,11 +68,11 @@
 
 <script>
 
-import Detail from './components/Detail.vue'
+import Header from './components/Header.vue'
 
 export default {
   name: 'app',
-  components: { Detail },
+  components: { Header },
   data () {
     return {
       url_base: 'https://restcountries.eu/rest/v2/',
